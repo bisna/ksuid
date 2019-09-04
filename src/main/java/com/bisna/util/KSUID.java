@@ -47,7 +47,9 @@ public final class KSUID implements Serializable, Comparable<KSUID> {
         final int byteLength = TIMESTAMP_LENGTH + PAYLOAD_LENGTH;
 
         if (buffer.length != byteLength) {
-            throw new RuntimeException(String.format("Valid KSUIDs are %s bytes.", byteLength));
+            throw new RuntimeException(
+                String.format("Valid KSUIDs are %s bytes, but found %s bytes.", byteLength, buffer.length)
+            );
         }
 
         this.value = value;

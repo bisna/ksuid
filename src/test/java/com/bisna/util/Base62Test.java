@@ -93,9 +93,11 @@ public class Base62Test {
 
     private byte[] createIncreasingByteArray() {
         final byte[] arr = new byte[256];
+
         for (int i = 0; i < 256; i++) {
             arr[i] = (byte) (i & 0xFF);
         }
+
         return arr;
     }
 
@@ -106,12 +108,15 @@ public class Base62Test {
     private byte[] createPseudoRandomByteArray(int seed, int size) {
         final byte[] arr = new byte[size];
         int state = seed;
+
         for (int i = 0; i < size; i += 4) {
             state = xorshift(state);
+
             for (int j = 0; j < 4 && i + j < size; j++) {
                 arr[i + j] = (byte) ((state >> j) & 0xFF);
             }
         }
+
         return arr;
     }
 
@@ -119,6 +124,7 @@ public class Base62Test {
         x ^= (x << 13);
         x ^= (x >> 17);
         x ^= (x << 5);
+
         return x;
     }
 }

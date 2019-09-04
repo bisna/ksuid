@@ -95,8 +95,7 @@ public class Base62 {
          * This algorithm is inspired by: http://codegolf.stackexchange.com/a/21672
          */
 
-        final int estimatedLength = estimateOutputLength(message.length, sourceBase, targetBase);
-
+        final int estimatedLength = this.estimateOutputLength(message.length, sourceBase, targetBase);
         final ByteArrayOutputStream out = new ByteArrayOutputStream(estimatedLength);
 
         byte[] source = message;
@@ -127,14 +126,14 @@ public class Base62 {
             out.write(0);
         }
 
-        return reverse(out.toByteArray());
+        return this.reverse(out.toByteArray());
     }
 
     /**
      * Estimates the length of the output in bytes.
      */
     private int estimateOutputLength(int inputLength, int sourceBase, int targetBase) {
-        return (int) Math.floor((Math.log(sourceBase) / Math.log(targetBase)) * inputLength);
+        return (int) Math.round((Math.log(sourceBase) / Math.log(targetBase)) * inputLength);
     }
 
     /**
